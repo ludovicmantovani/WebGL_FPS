@@ -10,6 +10,8 @@ Game = function(canvasId) {
     var _arena = new Arena(_this);
 
     engine.runRenderLoop(function () {
+        _this.fps = Math.round(1000/engine.getDeltaTime());
+        _player._checkMove((_this.fps)/60);
         _this.scene.render();
     });
 
@@ -33,3 +35,14 @@ Game.prototype = {
 document.addEventListener("DOMContentLoaded", function () {
     new Game('renderCanvas');
 }, false);
+
+function degToRad(deg)
+{
+   return (Math.PI*deg)/180
+}
+
+function radToDeg(rad)
+{
+   // return (Math.PI*deg)/180
+   return (rad*180)/Math.PI
+}
